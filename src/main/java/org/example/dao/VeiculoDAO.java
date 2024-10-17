@@ -1,0 +1,85 @@
+package org.example.dao;
+
+import org.example.model.*;
+import org.example.config.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class VeiculoDAO {
+
+    public boolean cadastrarVeiculo(Modelo modelo) {
+        Usuario usuario = UsuarioSession.getInstance().getUsuario(); // Obtendo o usuário da sessão
+
+        String sql = "INSERT INTO veiculo (fk_Usuario_id, fk_Modelo_id) VALUES (?, ?)";
+
+        try {
+            Connection conn = Conexao.getConnection(); // Obtém a conexão aqui
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, usuario.getId());
+            ps.setInt(2, modelo.getId());
+            System.out.println("Veiculo cadastrado");
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            Conexao.fecharConexao();
+        }
+    }
+
+    public List<Veiculo> listarVeiculosPorUsuario() {
+        Usuario usuario = UsuarioSession.getInstance().getUsuario(); // Obtendo o usuário da sessão
+        String sql = "SELECT v.id AS veiculo_id, v.fk_Modelo_id, m.marca, m.nomeModelo, m.ano, m.versao " +
+                "FROM veiculo v JOIN modelo m ON v.fk_Modelo_id = m.id WHERE v.fk_Usuario_id = ?";
+        List<Veiculo> veiculos = new ArrayList<>();
+
+        try {
+            Connection conn = Conexao.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, usuario.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Modelo modelo = new Modelo(
+                        rs.getInt("fk_Modelo_id"),
+                        rs.getString("marca"),
+                        rs.getString("nomeModelo "),
+                        rs.getInt("ano"),
+                        rs.getString("versao")
+                );
+                Veiculo veiculo = new Veiculo(
+                        rs.getInt("veiculo_id"), modelo
+                );
+                veiculos.add(veiculo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Conexao.fecharConexao();
+        }
+        return veiculos;
+    }
+
+    //ExcluirVeiculo
+    public boolean excluirVeiculo(int veiculoId) {
+        String sql = "DELETE FROM Veiculo WHERE id = ?";
+
+        try {
+            Connection conn = Conexao.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, veiculoId);
+            System.out.println("Veiculo Excluido");
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            Conexao.fecharConexao();
+        }
+    }
+
+
+}
