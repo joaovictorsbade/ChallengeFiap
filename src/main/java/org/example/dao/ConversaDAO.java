@@ -2,6 +2,7 @@ package org.example.dao;
 
 import org.example.model.*;
 import org.example.config.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,12 +45,13 @@ public class ConversaDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Conversa conversa = new Conversa(
-                        //Criar verificação para status se o status for finalizado não listar
                         rs.getInt("id"),
-                        rs.getString("status").charAt(0),
-                        usuario
+                        rs.getString("status").charAt(0), usuario
                 );
-                conversas.add(conversa);
+                //Na tabela e no objeto Conversa definir valores para status, por enquanto A = ativo e B = finalizado
+                if (conversa.getStatus() == 'A') {
+                    conversas.add(conversa);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

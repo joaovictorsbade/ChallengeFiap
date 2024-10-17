@@ -20,7 +20,7 @@ public class Main {
 //        Usuario usuario = new Usuario(26,"Alguem", "alguem@eample.com");
 
         // Cadastrar um novo usuário
-//        usuarioController.cadastrarUsuario("Rebeca", "rebeca@eample.com", "senha123");
+//        usuarioController.cadastrarUsuario("Predo", "predo@eample.com", "senha123");
 
 //        // Login do usuário
 //        usuarioController.loginUsuario("rebeca@eample.com", "novaSenha789");

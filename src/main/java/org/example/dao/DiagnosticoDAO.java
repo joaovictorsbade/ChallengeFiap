@@ -94,7 +94,30 @@ public class DiagnosticoDAO {
 
         return diagnostico;
     }
+    public boolean excluirDiagnosticoPorUsuario(int diagnosticoId, int usuarioId) {
+        String sql = "DELETE FROM diagnostico WHERE id = ? AND fk_Usuario_id = ?";
+        try {
+            Connection conn = Conexao.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, diagnosticoId);
+            ps.setInt(2, usuarioId);
 
-    //criar excluir diagnostico
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Diagnóstico excluído com sucesso.");
+                return true;
+            } else {
+                System.out.println("Nenhum diagnóstico encontrado para o ID e usuário especificados.");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            Conexao.fecharConexao();
+        }
+    }
+
+
 }
 
