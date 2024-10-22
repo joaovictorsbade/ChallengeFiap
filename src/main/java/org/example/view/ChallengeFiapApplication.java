@@ -2,10 +2,19 @@ package org.example.view;
 
 import org.example.controller.*;
 import org.example.model.*;
+import org.springframework.boot.SpringApplication;
+
 import java.util.List;
 
-public class Main {
+import org.springframework.boot.SpringApplication; // Importa a classe SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication; // Importa a anotação SpringBootApplication
+
+@SpringBootApplication // Anotação que habilita a configuração automática do Spring Boot
+public class ChallengeFiapApplication {
+
     public static void main(String[] args) {
+//        SpringApplication.run(ChallengeFiapApplication.class, args);
+
 
         // Criação dos controladores
         UsuarioController usuarioController = new UsuarioController();
@@ -22,8 +31,8 @@ public class Main {
         // Cadastrar um novo usuário
 //        usuarioController.cadastrarUsuario("Predo", "predo@eample.com", "senha123");
 
-//        // Login do usuário
-//        usuarioController.loginUsuario("rebeca@eample.com", "novaSenha789");
+        // Login do usuário
+        usuarioController.loginUsuario("rebeca@eample.com", "novaSenha789");
 
 //        // Editar senha do usuário
 //        usuarioController.editarSenhaUsuario("novaSenha789");
@@ -73,23 +82,26 @@ public class Main {
 
 //        ^^----------------Conversa funcionado---------------------^^
 //        // Criar uma conversa
-//        conversaController.criarConversa('A');
+        conversaController.criarConversa();
 //
-//        // Listar conversas por usuário
-//        List<Conversa> conversas = conversaController.listarConversas();
-//        for (Conversa c : conversas) {
-//            System.out.println("Conversa:"+c);
-//        }
+        // Listar conversas por usuário
+        List<Conversa> conversas = conversaController.listarConversas();
+        for (Conversa c : conversas) {
+            System.out.println("Conversa:"+c);
+        }
+
+//        conversaController.finalizarConversa(21);
+
 //        ^^----------------Conversa funcionado---------------------^^
 
         // Inserir uma mensagem
-//        if (!conversas.isEmpty()) {
-//            Conversa conversaExistente = conversas.get(0);
-//            mensagemController.inserirMensagem("Olá, como posso ajudar?", "user", new java.util.Date(), conversaExistente);
-//        }
+        if (!conversas.isEmpty()) {
+            Conversa conversaExistente = conversas.get(0);
+            mensagemController.inserirMensagem("Olá, como posso ajudar?", "user", new java.util.Date(), conversaExistente);
+        }
 
-        // Listar mensagens por conversa
-//        Conversa conversa = new Conversa('A'); // 'A' como status exemplo
+//         Listar mensagens por conversa
+        Conversa conversa = new Conversa('A'); // 'A' como status exemplo
 //
 //        List<Mensagem> mensagens = mensagemController.listarMensagens(conversa);
 //        for (Mensagem mensagem : mensagens) {

@@ -15,8 +15,8 @@ public class ConversaController {
     }
 
     //CriarConversa
-    public void criarConversa(char status){
-        Conversa conversa = new Conversa(status);
+    public void criarConversa(){
+        Conversa conversa = new Conversa('A');
         conversaDAO.criarConversa(conversa);
     }
     //ListarConversasPorUsuario
@@ -24,8 +24,9 @@ public class ConversaController {
         List<Conversa> listarConversas = conversaDAO.listarConversasPorUsuario();
         return listarConversas;
     }
-
     //Metodo de finalizar conversa(Trocar o status)
-
-    //Criar verificação de status
+    public void finalizarConversa(int id){
+        Conversa conversa = new Conversa(id);
+        conversaDAO.editarStatusConversa(conversa);
+    }
 }

@@ -61,5 +61,30 @@ public class ConversaDAO {
         return conversas;
     }
 
+    public boolean editarStatusConversa(Conversa conversa) {
+
+        String sql = "UPDATE conversa SET status = ? WHERE id = ?";
+
+        try {
+            Connection conn = Conexao.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            conn.setAutoCommit(true);
+
+            ps.setString(1, "B");
+            ps.setInt(2, conversa.getId());
+
+            Boolean result = ps.executeUpdate() > 0;
+            System.out.println("Status alterado com sucesso.");
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            Conexao.fecharConexao();
+        }
+    }
+
 }
 

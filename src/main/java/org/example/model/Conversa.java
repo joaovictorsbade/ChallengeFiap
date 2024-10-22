@@ -10,6 +10,9 @@ public class Conversa {
 		this.status = status;
 		this.usuario = usuario;
 	}
+	public Conversa(int id){
+		this.id = id;
+	}
 
 	public Conversa(Character status) {
 		this.status = status;

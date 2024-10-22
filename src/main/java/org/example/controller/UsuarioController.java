@@ -2,7 +2,11 @@ package org.example.controller;
 
 import org.example.model.Usuario;
 import org.example.dao.UsuarioDAO;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@CrossOrigin(origins = "http://localhost:3000") // Permite chamadas do front-end rodando em localhost:3000
+@RequestMapping("/usuarios") // Define o caminho base para os endpoints
 public class UsuarioController {
 
     private UsuarioDAO usuarioDAO;
@@ -12,21 +16,28 @@ public class UsuarioController {
         this.usuarioDAO = new UsuarioDAO(); // Usa o DAO sem conexão explícita
     }
 
-    //CadastrarUsuario
-    public void cadastrarUsuario(String nome, String email, String senha) {
+    // Cadastrar novo usuário
+    @PostMapping("/cadastro")
+    public void cadastrarUsuario(@RequestParam String nome, @RequestParam String email, @RequestParam String senha) {
         Usuario usuario = new Usuario(nome, email, senha);
         usuarioDAO.cadastrarUsuario(usuario);
     }
-    //Login
-    public void loginUsuario(String email, String senha) {
+
+    // Login de usuário
+    @PostMapping("/login")
+    public void loginUsuario(@RequestParam String email, @RequestParam String senha) {
         Usuario usuario = new Usuario(email, senha);
         usuarioDAO.loginUsuario(usuario);
     }
-    //EditarSenhaUsuario
-    public void editarSenhaUsuario(String novaSenha) {
+
+    // Editar senha de um usuário
+    @PutMapping("/editar-senha")
+    public void editarSenhaUsuario(@RequestParam String novaSenha) {
         usuarioDAO.editarSenhaUsuario(novaSenha);
     }
-    //ExcluirUsuario
+
+    // Excluir usuário
+    @DeleteMapping("/excluir")
     public void excluirUsuario() {
         usuarioDAO.excluirUsuario();
     }
