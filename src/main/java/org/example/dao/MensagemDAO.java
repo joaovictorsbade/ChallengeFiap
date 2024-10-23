@@ -51,7 +51,9 @@ public class MensagemDAO {
             ps.setString(2, mensagem.getTipo());
             ps.setDate(3, new Date(mensagem.getDataHora().getTime()));
             ps.setInt(4, mensagem.getConversa().getId());
+            System.out.println("Mensagem inserida no banco result="+ps.executeUpdate());
             return ps.executeUpdate() > 0;
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

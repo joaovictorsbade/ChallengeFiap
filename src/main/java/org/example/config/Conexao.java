@@ -1,6 +1,8 @@
 package org.example.config;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Scanner;
+
 import oracle.jdbc.pool.OracleDataSource;
 
 public class Conexao {
@@ -35,9 +37,21 @@ public class Conexao {
         }
     }
 
-    public static class Credenciais {
-        public static final String user = "rm555446";//Colocar rm do usuario
-        public static final String pwd = "160805";//Inserir senha do usuario
-    }
+//    public static class Credenciais {
+//        public static final String user = "rm555446";//Colocar rm do usuario
+//        public static final String pwd = "160805";//Inserir senha do usuario
+//    }
+
+    public static void Credenciais{
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o RM do usuário: ");
+        String user = scanner.nextLine();
+
+        System.out.println("Digite a senha do usuário: ");
+        String pwd = scanner.nextLine();
+    };
+
+
 }
 

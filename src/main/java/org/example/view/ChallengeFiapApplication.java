@@ -82,7 +82,7 @@ public class ChallengeFiapApplication {
 
 //        ^^----------------Conversa funcionado---------------------^^
 //        // Criar uma conversa
-        conversaController.criarConversa();
+//        conversaController.criarConversa();
 //
         // Listar conversas por usuário
         List<Conversa> conversas = conversaController.listarConversas();
@@ -101,7 +101,6 @@ public class ChallengeFiapApplication {
         }
 
 //         Listar mensagens por conversa
-        Conversa conversa = new Conversa('A'); // 'A' como status exemplo
 //
 //        List<Mensagem> mensagens = mensagemController.listarMensagens(conversa);
 //        for (Mensagem mensagem : mensagens) {
