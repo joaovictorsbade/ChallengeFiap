@@ -15,7 +15,6 @@ public class ChallengeFiapApplication {
     public static void main(String[] args) {
 //        SpringApplication.run(ChallengeFiapApplication.class, args);
 
-
         // Criação dos controladores
         UsuarioController usuarioController = new UsuarioController();
         ModeloController modeloController = new ModeloController();
@@ -29,13 +28,13 @@ public class ChallengeFiapApplication {
 //        Usuario usuario = new Usuario(26,"Alguem", "alguem@eample.com");
 
         // Cadastrar um novo usuário
-//        usuarioController.cadastrarUsuario("Predo", "predo@eample.com", "senha123");
+//        usuarioController.cadastrarUsuario("Irineu", "irineu@eample.com", "senha123");
 
         // Login do usuário
-        usuarioController.loginUsuario("rebeca@eample.com", "novaSenha789");
+        usuarioController.loginUsuario("irineu@eample.com", "senha123");
 
 //        // Editar senha do usuário
-//        usuarioController.editarSenhaUsuario("novaSenha789");
+//        usuarioController.editarSenhaUsuario("novaSenhaSofia");
 
 //        // Excluir o usuário
 //        usuarioController.excluirUsuario();
@@ -52,15 +51,15 @@ public class ChallengeFiapApplication {
 //        modeloController.cadastrarModelo("Hyundai", "Creta", 2024, "Diamond");
 
         // Listar modelos
-//        List<Modelo> modelos = modeloController.listarModelos();
-//        for (Modelo modelo : modelos) {
-//            System.out.printf("ID: %d, Marca: %s, Modelo: %s, Ano: %d, Versão: %s%n",
-//                    modelo.getId(),
-//                    modelo.getMarca(),
-//                    modelo.getNomeModelo(),
-//                    modelo.getAno(),
-//                    modelo.getVersao());
-//        }
+        List<Modelo> modelos = modeloController.listarModelos();
+        for (Modelo modelo : modelos) {
+            System.out.printf("ID: %d, Marca: %s, Modelo: %s, Ano: %d, Versão: %s%n",
+                    modelo.getId(),
+                    modelo.getMarca(),
+                    modelo.getNomeModelo(),
+                    modelo.getAno(),
+                    modelo.getVersao());
+        }
 //        ^^----------------Modelo funcionado---------------------^^
 
 //        ^^----------------Veiculo funcionado---------------------^^
@@ -69,10 +68,10 @@ public class ChallengeFiapApplication {
 //        veiculoController.cadastrarVeiculo(modelo);
 //
 //        // Listar veículos por usuário
-//        List<Veiculo> veiculos = veiculoController.listarVeiculos();
-//        for (Veiculo veiculo : veiculos) {
-//            System.out.println(veiculo);
-//        }
+        List<Veiculo> veiculos = veiculoController.listarVeiculos();
+        for (Veiculo veiculo : veiculos) {
+            System.out.println(veiculo);
+        }
 
         // Excluir um veículo
 //        if (!veiculos.isEmpty()) {
@@ -85,29 +84,28 @@ public class ChallengeFiapApplication {
 //        conversaController.criarConversa();
 //
         // Listar conversas por usuário
-        List<Conversa> conversas = conversaController.listarConversas();
-        for (Conversa c : conversas) {
-            System.out.println("Conversa:"+c);
-        }
+//        List<Conversa> conversas = conversaController.listarConversas();
+//        for (Conversa c : conversas) {
+//            System.out.println("Conversa:"+c);
+//        }
 
 //        conversaController.finalizarConversa(21);
 
 //        ^^----------------Conversa funcionado---------------------^^
 
         // Inserir uma mensagem
-        if (!conversas.isEmpty()) {
-            Conversa conversaExistente = conversas.get(0);
-            mensagemController.inserirMensagem("Olá, como posso ajudar?", "user", new java.util.Date(), conversaExistente);
-        }
+//        if (!conversas.isEmpty()) {
+//            Conversa conversaExistente = conversas.get(0);
+//            mensagemController.inserirMensagem("Olá, como posso ajudar?", "user", new java.util.Date(), conversaExistente);
+//        }
 
-//         Listar mensagens por conversa
-//
+         //Listar mensagens por conversa
 //        List<Mensagem> mensagens = mensagemController.listarMensagens(conversa);
 //        for (Mensagem mensagem : mensagens) {
 //            System.out.println(mensagem);
 //        }
 
-        // Mostrar diagnóstico recente
+         //Mostrar diagnóstico recente
 //        List<Diagnostico> diagnosticos = diagnosticoController.listarDiagnosticos(usuario);
 //        if (!diagnosticos.isEmpty()) {
 //            Diagnostico diagnosticoRecente = diagnosticoController.mostrarDiagnosticoRecente(usuario);

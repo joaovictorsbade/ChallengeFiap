@@ -13,20 +13,20 @@ public class UsuarioBO {
     }
 
     public Usuario cadastrarUsuario(String nome, String email, String senha) {
-        // Regra de negócio, por exemplo, verificar se o e-mail já existe
+         //Regra de negócio, por exemplo, verificar se o e-mail já existe
         if (usuarioDAO.emailExiste(email)) {
             System.out.println("Email já cadastrado.");
             return null;
         }
-
-        // Verificação de senha
-        if (senha.length() < 6) {
+         //Verificação de senha
+        else if (senha.length() < 6) {
             System.out.println("A senha precisa ter pelo menos 6 caracteres.");
             return null;
         }
-
-        Usuario usuario = new Usuario(nome, email, senha);
-        return usuarioDAO.cadastrarUsuario(usuario);
+        else{
+            Usuario usuario = new Usuario(nome, email, senha);
+            return usuarioDAO.cadastrarUsuario(usuario);
+        }
     }
 
     public Usuario loginUsuario(String email, String senha) {

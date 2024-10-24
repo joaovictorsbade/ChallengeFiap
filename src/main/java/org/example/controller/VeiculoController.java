@@ -1,34 +1,32 @@
 package org.example.controller;
 
+import org.example.bo.VeiculoBO;
 import org.example.model.Modelo;
 import org.example.model.Veiculo;
-import org.example.dao.VeiculoDAO;
 
 import java.util.List;
 
 public class VeiculoController {
 
-    private VeiculoDAO veiculoDAO;
+    private VeiculoBO veiculoBO;
 
     // Construtor para injeção de dependência
     public VeiculoController() {
-        this.veiculoDAO = new VeiculoDAO();
+        this.veiculoBO = new VeiculoBO();
     }
 
-    //CadastrarVeiculo
-    public void cadastrarVeiculo(Modelo modelo){
-        VeiculoDAO veiculoDAO = new VeiculoDAO();
-        veiculoDAO.cadastrarVeiculo(modelo);
+    // Cadastrar Veículo
+    public boolean cadastrarVeiculo(Modelo modelo) {
+        return veiculoBO.cadastrarVeiculo(modelo);
     }
-    //ListarVeiculos
+
+    // Listar Veículos
     public List<Veiculo> listarVeiculos() {
-        VeiculoDAO veiculoDAO = new VeiculoDAO();
-        List<Veiculo> listarVeiculos = veiculoDAO.listarVeiculosPorUsuario();
-        return listarVeiculos;
+        return veiculoBO.listarVeiculosPorUsuario();
     }
-    //ExcluirVeiculo
-    public void excluirVeiculo(int idVeiculo){
-        VeiculoDAO veiculoDAO = new VeiculoDAO();
-        veiculoDAO.excluirVeiculo(idVeiculo);
+
+    // Excluir Veículo
+    public boolean excluirVeiculo(int idVeiculo) {
+        return veiculoBO.excluirVeiculo(idVeiculo);
     }
 }

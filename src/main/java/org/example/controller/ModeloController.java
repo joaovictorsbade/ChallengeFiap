@@ -1,27 +1,26 @@
 package org.example.controller;
 
+import org.example.bo.ModeloBO;
 import org.example.model.Modelo;
-import org.example.dao.ModeloDAO;
 
 import java.util.List;
 
 public class ModeloController {
 
-    private ModeloDAO modeloDAO;
+    private ModeloBO modeloBO;
 
     // Construtor para injeção de dependência
     public ModeloController() {
-        this.modeloDAO = new ModeloDAO();
+        this.modeloBO = new ModeloBO();
     }
 
-    //CadastrarModelo
-    public void cadastrarModelo(String marca, String nomeModelo, int ano, String versao) {
-        Modelo modelo = new Modelo(marca, nomeModelo, ano, versao);
-        modeloDAO.cadastrarModelo(modelo);
+    // Cadastrar Modelo
+    public boolean cadastrarModelo(String marca, String nomeModelo, int ano, String versao) {
+        return modeloBO.cadastrarModelo(marca, nomeModelo, ano, versao);
     }
-    //ListarModelos
+
+    // Listar Modelos
     public List<Modelo> listarModelos() {
-        List<Modelo> listarModelos = modeloDAO.listarTodosModelos();
-        return listarModelos;
+        return modeloBO.listarTodosModelos();
     }
 }
