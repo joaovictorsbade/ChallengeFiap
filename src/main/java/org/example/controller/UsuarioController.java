@@ -1,44 +1,49 @@
 package org.example.controller;
 
+import org.example.bo.UsuarioBO;
 import org.example.model.Usuario;
-import org.example.dao.UsuarioDAO;
-import org.springframework.web.bind.annotation.*;
 
-@RestController
-@CrossOrigin(origins = "http://localhost:3000") // Permite chamadas do front-end rodando em localhost:3000
-@RequestMapping("/usuarios") // Define o caminho base para os endpoints
 public class UsuarioController {
 
-    private UsuarioDAO usuarioDAO;
+    private UsuarioBO usuarioBO;
 
-    // Construtor para injeção de dependência
     public UsuarioController() {
-        this.usuarioDAO = new UsuarioDAO(); // Usa o DAO sem conexão explícita
+        this.usuarioBO = new UsuarioBO();
     }
 
-    // Cadastrar novo usuário
-    @PostMapping("/cadastro")
-    public void cadastrarUsuario(@RequestParam String nome, @RequestParam String email, @RequestParam String senha) {
-        Usuario usuario = new Usuario(nome, email, senha);
-        usuarioDAO.cadastrarUsuario(usuario);
+    public void cadastrarUsuario(String nome, String email, String senha) {
+        Usuario usuario = usuarioBO.cadastrarUsuario(nome, email, senha);
+        if (usuario != null) {
+            System.out.println("Usuário cadastrado com sucesso.");
+        } else {
+            System.out.println("Erro ao cadastrar o usuário.");
+        }
     }
 
-    // Login de usuário
-    @PostMapping("/login")
-    public void loginUsuario(@RequestParam String email, @RequestParam String senha) {
-        Usuario usuario = new Usuario(email, senha);
-        usuarioDAO.loginUsuario(usuario);
+    public void loginUsuario(String email, String senha) {
+        Usuario usuario = usuarioBO.loginUsuario(email, senha);
+        if (usuario != null) {
+            System.out.println("Usuário logado com sucesso.");
+        } else {
+            System.out.println("Erro ao realizar login.");
+        }
     }
 
-    // Editar senha de um usuário
-    @PutMapping("/editar-senha")
-    public void editarSenhaUsuario(@RequestParam String novaSenha) {
-        usuarioDAO.editarSenhaUsuario(novaSenha);
+    public void editarSenhaUsuario(String novaSenha) {
+        boolean resultado = usuarioBO.editarSenhaUsuario(novaSenha);
+        if (resultado) {
+            System.out.println("Senha alterada com sucesso.");
+        } else {
+            System.out.println("Erro ao alterar a senha.");
+        }
     }
 
-    // Excluir usuário
-    @DeleteMapping("/excluir")
     public void excluirUsuario() {
-        usuarioDAO.excluirUsuario();
+        boolean resultado = usuarioBO.excluirUsuario();
+        if (resultado) {
+            System.out.println("Usuário excluído com sucesso.");
+        } else {
+            System.out.println("Erro ao excluir o usuário.");
+        }
     }
 }

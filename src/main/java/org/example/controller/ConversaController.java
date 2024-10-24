@@ -1,32 +1,31 @@
 package org.example.controller;
 
+import org.example.bo.ConversaBO;
 import org.example.model.Conversa;
-import org.example.dao.ConversaDAO;
 
 import java.util.List;
 
 public class ConversaController {
 
-    private ConversaDAO conversaDAO;
+    private ConversaBO conversaBO;
 
     // Construtor para injeção de dependência
     public ConversaController() {
-        this.conversaDAO = new ConversaDAO();
+        this.conversaBO = new ConversaBO();
     }
 
-    //CriarConversa
-    public void criarConversa(){
-        Conversa conversa = new Conversa('A');
-        conversaDAO.criarConversa(conversa);
+    // Criar conversa através da BO
+    public boolean criarConversa() {
+        return conversaBO.criarConversa();
     }
-    //ListarConversasPorUsuario
+
+    // Listar conversas através da BO
     public List<Conversa> listarConversas() {
-        List<Conversa> listarConversas = conversaDAO.listarConversasPorUsuario();
-        return listarConversas;
+        return conversaBO.listarConversasPorUsuario();
     }
-    //Metodo de finalizar conversa(Trocar o status)
-    public void finalizarConversa(int id){
-        Conversa conversa = new Conversa(id);
-        conversaDAO.editarStatusConversa(conversa);
+
+    // Finalizar conversa através da BO
+    public boolean finalizarConversa(int id) {
+        return conversaBO.finalizarConversa(id);
     }
 }

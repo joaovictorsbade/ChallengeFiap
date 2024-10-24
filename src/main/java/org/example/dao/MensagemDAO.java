@@ -17,9 +17,8 @@ public class MensagemDAO {
         String sql = "SELECT * FROM mensagem WHERE fk_Conversa_id = ?";
         List<Mensagem> mensagens = new ArrayList<>();
 
-        try {
-            Connection conn = Conexao.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, conversa.getId());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -34,8 +33,6 @@ public class MensagemDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            Conexao.fecharConexao();
         }
         return mensagens;
     }
@@ -44,21 +41,16 @@ public class MensagemDAO {
     public boolean inserirMensagem(Mensagem mensagem) {
         String sql = "INSERT INTO mensagem (conteudo, tipo, data_hora, fk_Conversa_id) VALUES (?, ?, ?, ?)";
 
-        try {
-            Connection conn = Conexao.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, mensagem.getConteudo());
             ps.setString(2, mensagem.getTipo());
             ps.setDate(3, new Date(mensagem.getDataHora().getTime()));
             ps.setInt(4, mensagem.getConversa().getId());
-            System.out.println("Mensagem inserida no banco result="+ps.executeUpdate());
             return ps.executeUpdate() > 0;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            Conexao.fecharConexao();
         }
     }
 }

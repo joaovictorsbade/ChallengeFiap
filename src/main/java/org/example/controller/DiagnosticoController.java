@@ -15,17 +15,18 @@ public class DiagnosticoController {
         this.diagnosticoDAO = new DiagnosticoDAO();
     }
 
-    //MostrarDiagnosticoRecente
+    // Mostrar diagnóstico recente
     public Diagnostico mostrarDiagnosticoRecente(Usuario usuario) {
-        int usuarioId = usuario.getId();
-        return diagnosticoDAO.mostrarDiagnosticoRecente(usuarioId, usuario);
+        return diagnosticoDAO.mostrarDiagnosticoRecente(usuario.getId());
     }
 
-    //ListarDiagnosticos
+    // Listar diagnósticos
     public List<Diagnostico> listarDiagnosticos(Usuario usuario) {
-        int usuarioId = usuario.getId();
-        List<Diagnostico> listarDiagnosticos = diagnosticoDAO.listarDiagnosticosPorUsuario(usuarioId);
-        return listarDiagnosticos;
+        return diagnosticoDAO.listarDiagnosticosPorUsuario(usuario.getId());
     }
-    //Excluir diagnostico
+
+    // Excluir diagnóstico
+    public boolean excluirDiagnostico(int diagnosticoId, Usuario usuario) {
+        return diagnosticoDAO.excluirDiagnosticoPorUsuario(diagnosticoId, usuario.getId());
+    }
 }

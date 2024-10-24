@@ -1,4 +1,4 @@
 package org.example.bo;
 
-public class ModeloBo {
+public class VeiculoBO {
 }
