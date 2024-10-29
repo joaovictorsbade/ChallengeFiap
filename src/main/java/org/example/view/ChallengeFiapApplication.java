@@ -2,36 +2,48 @@ package org.example.view;
 
 import org.example.controller.*;
 import org.example.model.*;
-import org.springframework.boot.SpringApplication;
-
 import java.util.List;
 
-import org.springframework.boot.SpringApplication; // Importa a classe SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication; // Importa a anotação SpringBootApplication
-
-@SpringBootApplication // Anotação que habilita a configuração automática do Spring Boot
 public class ChallengeFiapApplication {
 
     public static void main(String[] args) {
-//        SpringApplication.run(ChallengeFiapApplication.class, args);
 
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
         // Criação dos controladores
-        UsuarioController usuarioController = new UsuarioController();
-        ModeloController modeloController = new ModeloController();
-        VeiculoController veiculoController = new VeiculoController();
-        ConversaController conversaController = new ConversaController();
-        DiagnosticoController diagnosticoController = new DiagnosticoController();
-        MensagemController mensagemController = new MensagemController();
+//        UsuarioController usuarioController = new UsuarioController();
+//        ModeloController modeloController = new ModeloController();
+//        VeiculoController veiculoController = new VeiculoController();
+//        ConversaController conversaController = new ConversaController();
+//        DiagnosticoController diagnosticoController = new DiagnosticoController();
+//        MensagemController mensagemController = new MensagemController();
 
 //        ^^----------------Usuario funcionado---------------------^^
 
 //        Usuario usuario = new Usuario(26,"Alguem", "alguem@eample.com");
 
         // Cadastrar um novo usuário
-//        usuarioController.cadastrarUsuario("Irineu", "irineu@eample.com", "senha123");
+//        usuarioController.cadastrarUsuario("", "", "");
 
         // Login do usuário
-        usuarioController.loginUsuario("irineu@eample.com", "senha123");
+//        usuarioController.loginUsuario("irineu@eample.com", "senha123");
 
 //        // Editar senha do usuário
 //        usuarioController.editarSenhaUsuario("novaSenhaSofia");
@@ -51,15 +63,15 @@ public class ChallengeFiapApplication {
 //        modeloController.cadastrarModelo("Hyundai", "Creta", 2024, "Diamond");
 
         // Listar modelos
-        List<Modelo> modelos = modeloController.listarModelos();
-        for (Modelo modelo : modelos) {
-            System.out.printf("ID: %d, Marca: %s, Modelo: %s, Ano: %d, Versão: %s%n",
-                    modelo.getId(),
-                    modelo.getMarca(),
-                    modelo.getNomeModelo(),
-                    modelo.getAno(),
-                    modelo.getVersao());
-        }
+//        List<Modelo> modelos = modeloController.listarModelos();
+//        for (Modelo modelo : modelos) {
+//            System.out.printf("ID: %d, Marca: %s, Modelo: %s, Ano: %d, Versão: %s%n",
+//                    modelo.getId(),
+//                    modelo.getMarca(),
+//                    modelo.getNomeModelo(),
+//                    modelo.getAno(),
+//                    modelo.getVersao());
+//        }
 //        ^^----------------Modelo funcionado---------------------^^
 
 //        ^^----------------Veiculo funcionado---------------------^^
@@ -68,10 +80,10 @@ public class ChallengeFiapApplication {
 //        veiculoController.cadastrarVeiculo(modelo);
 //
 //        // Listar veículos por usuário
-        List<Veiculo> veiculos = veiculoController.listarVeiculos();
-        for (Veiculo veiculo : veiculos) {
-            System.out.println(veiculo);
-        }
+//        List<Veiculo> veiculos = veiculoController.listarVeiculos();
+//        for (Veiculo veiculo : veiculos) {
+//            System.out.println(veiculo);
+//        }
 
         // Excluir um veículo
 //        if (!veiculos.isEmpty()) {
