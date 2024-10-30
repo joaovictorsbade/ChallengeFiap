@@ -1,10 +1,7 @@
 package org.example.controller;
 
 
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import org.example.bo.UsuarioBO;
 import org.example.model.Usuario;
@@ -18,6 +15,7 @@ public class UsuarioController {
         this.usuarioBO = new UsuarioBO();
     }
 
+    // Cadastrar usuário
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -25,36 +23,49 @@ public class UsuarioController {
         Usuario novoUsuario = usuarioBO.cadastrarUsuario(usuario.getNome(), usuario.getEmail(), usuario.getSenha());
         if (novoUsuario != null) {
             UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-            builder.path(Integer.toString(novoUsuario.getId())); // Supondo que o objeto Usuario tem um método getId()
+            builder.path(Integer.toString(novoUsuario.getId()));
             return Response.created(builder.build()).entity(novoUsuario).build();
         }
         return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao cadastrar o usuário.").build();
     }
 
-    public void loginUsuario(String email, String senha) {
+    // Login de usuário
+    @POST
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response loginUsuario(@QueryParam("email") String email, @QueryParam("senha") String senha) {
         Usuario usuario = usuarioBO.loginUsuario(email, senha);
         if (usuario != null) {
-            System.out.println("Usuário logado com sucesso.");
-        } else {
-            System.out.println("Erro ao realizar login.");
+            return Response.ok(usuario).build();
         }
+        return Response.status(Response.Status.UNAUTHORIZED).entity("Erro ao realizar login.").build();
     }
 
-    public void editarSenhaUsuario(String novaSenha) {
+    // Editar senha do usuário
+    @PUT
+    @Path("/editar-senha")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response editarSenhaUsuario(@QueryParam("novaSenha") String novaSenha) {
         boolean resultado = usuarioBO.editarSenhaUsuario(novaSenha);
         if (resultado) {
-            System.out.println("Senha alterada com sucesso.");
-        } else {
-            System.out.println("Erro ao alterar a senha.");
+            return Response.ok("Senha alterada com sucesso.").build();
         }
+        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao alterar a senha.").build();
     }
 
-    public void excluirUsuario() {
+    // Excluir usuário
+    @DELETE
+    @Path("/excluir")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response excluirUsuario() {
         boolean resultado = usuarioBO.excluirUsuario();
         if (resultado) {
-            System.out.println("Usuário excluído com sucesso.");
-        } else {
-            System.out.println("Erro ao excluir o usuário.");
+            return Response.ok("Usuário excluído com sucesso.").build();
         }
+        return Response.status(Response.Status.BAD_REQUEST).entity("Erro ao excluir o usuário.").build();
     }
 }
+
+
