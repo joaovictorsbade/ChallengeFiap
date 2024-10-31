@@ -1,23 +1,27 @@
+# Pasta target (gerada pelo Maven)
 target/
+# Exclui o wrapper do Maven
 !.mvn/wrapper/maven-wrapper.jar
+# Exclui a pasta target nos diretórios src/main e src/test
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
-*.iws
-*.iml
-*.ipr
 
 ### Eclipse ###
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
 
