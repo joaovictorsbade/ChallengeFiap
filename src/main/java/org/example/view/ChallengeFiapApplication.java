@@ -108,7 +108,7 @@ public class ChallengeFiapApplication {
         // Inserir uma mensagem
 //        if (!conversas.isEmpty()) {
 //            Conversa conversaExistente = conversas.get(0);
-//            mensagemController.inserirMensagem("Olá, como posso ajudar?", "user", new java.util.Date(), conversaExistente);
+//            mensagemController.inserirMensagem("Olá, tenho um problema no meu carro", "user", new java.util.Date(), conversaExistente);
 //        }
 
          //Listar mensagens por conversa
